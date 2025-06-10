@@ -5,9 +5,15 @@ function App() {
 
   const handleClick = (value) => setInput(input + value);
   const handleClear = () => setInput('');
+  
   const handleEqual = () => {
     try {
-      setInput(eval(input).toString());
+      // You can replace this with a safer evaluation method if needed
+      // Using eval here just for a simple example
+      // eslint-disable-next-line no-eval
+      const result = eval(input.trim());
+      if (result === undefined || result === null) throw new Error('Invalid expression');
+      setInput(result.toString());
     } catch {
       setInput('Error');
     }
